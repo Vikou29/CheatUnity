@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="Register.css">
+    <script src="cooki.js"></script>
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <div class="register-container">
+      <h2>Register</h2>
+      <form id="register-form">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
+        <button type="submit">Register</button>
+      </form>
+      <p>Already have an account? <a href="login.html">Login here</a></p>
+    </div>
+    <script>
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        window.location.href = "index.html"; // redirection
+      }
+
+      var form = document.getElementById('register-form');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // empêche l'envoi du formulaire
+        var username = document.getElementById('username').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+
+        setCookie('username', username, 7);
+        setCookie('email', email, 7);
+        setCookie('password', password, 7);
+
+        // Afficher le message de bienvenue
+        var welcomeMessage = document.createElement('p');
+        welcomeMessage.textContent = "Welcome " + username + "!";
+        document.body.appendChild(welcomeMessage);
+      });
+    </script>
+  </body>
+</html>

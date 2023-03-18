@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="cooki.js"></script>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form id="login-form">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </div>
+    <script>
+      function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+          var date = new Date();
+          date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+          expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        window.location.href = "index.html"; // redirection
+      }
+
+      var form = document.getElementById('login-form');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // empêche l'envoi du formulaire
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        // Vérification du nom d'utilisateur et du mot de passe
+        // Ici, on suppose que les informations sont correctes
+        setCookie('username', username, 7);
+        setCookie('password', password, 7);
+      });
+    </script>
+  </body>
+</html>
